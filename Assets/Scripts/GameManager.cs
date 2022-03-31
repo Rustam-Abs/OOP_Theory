@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private Canvas _startCanvas;
     [SerializeField]
     private Canvas _gameCanvas;
+    public Canvas GameCanvas
+        { get { return _gameCanvas; } }
+
     [SerializeField]
     private Canvas _pauseCanvas;
 
