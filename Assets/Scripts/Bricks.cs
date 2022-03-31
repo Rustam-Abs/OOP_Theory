@@ -1,16 +1,13 @@
 using UnityEngine.UI;
 using UnityEngine;
 
+
 public class Bricks : MonoBehaviour
 {
 
-    private Color _colour;
-    public Color colour
-    {
-        get { return _colour; }
-        set { _colour = value; }
-    }
-
+    
+    protected UIHelper uiHelper;
+  
     private float _speed = 5;
     public float speed
       
@@ -20,27 +17,36 @@ public class Bricks : MonoBehaviour
     }
 
     protected float rotation;
+        
+    public   Image _image;
+ 
+    public Image _activeIcon;
 
+    
+    
 
-    [SerializeField]
-    private Image _image;
-
+    private void Awake()
+    {
+        _activeIcon.enabled = false;
+    }
 
     private void Update()
     {
-        rotation += speed * Time.deltaTime;
-        Action();
+       
+        Rotate();
+    }
+
+    protected void Rotate()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+        rotation += _speed * Time.deltaTime;
     }
 
     public virtual void Action()
     {
-        transform.rotation = Quaternion.Euler(0,0, rotation);
+        _image.color = Random.ColorHSV();
 
     }
-
-    protected virtual void ChangeColor(Color _color)
-    {
-        _image.color = _color;
-    }
+       
 
 }
